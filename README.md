@@ -1,1 +1,1 @@
-# ASI TEMPLATE# stinkys-kittens-doggies-too
+# Stinkys Kittens and Doggies too
