@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react';
+import {Pet} from "./Pet";
+import {getPets} from "./petClient";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    const [pets, setPets] = useState<Pet[]>([]);
+
+    useEffect(() => {
+        getPets().then(data => {
+            setPets(data);
+            }
+        )
+    })
+    return (
+        <>
+            <h1> Stinky's Kittens and Doggies too! </h1>
+            {pets.map(pet => <div key={pet.id}> {pet.name} </div>)}
+        </>
+    )
 }
 
 export default App;
