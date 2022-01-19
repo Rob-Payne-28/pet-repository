@@ -9,8 +9,8 @@ describe('petClient', () => {
     describe('getPets', () => {
 
         it('should make a request for pets', async () => {
-            const expectedPets: Pet[] = [{id: 1, name: 'fluffy'}, {id: 2, name: 'baldy'}]
-            mockedAxios.get.mockResolvedValue(expectedPets)
+            const expectedPets = {data: [{id: 1, name: 'fluffy'}, {id: 2, name: 'baldy'}]}
+            mockedAxios.get.mockResolvedValue({data: expectedPets})
 
             const returnedPets = await getPets();
             expect(returnedPets).toEqual(expectedPets);

@@ -10,7 +10,7 @@ const App = () => {
             setPets(data);
             }
         )
-    })
+    }, [])
     return (
         <>
             <h1> Stinky's Kittens and Doggies too! </h1>
