@@ -1,6 +1,8 @@
 # Stinky's Kittens and Doggies too
 
-## Scenario
+![image info](./stinkys_storefront.png)
+
+## Scenario 🐈 🐕
 You run a pet adoption agency called "Stinky's Kittens and Doggies too" (I guess this makes you Stinky!).  You need a 
 way of keeping track of pets that are up for adoption as well as applicants for each pet, so that you can best match 
 each pet with its fur-ever person.  
@@ -121,3 +123,5 @@ record applicants' email addresses, and add the emails of approved applicants to
 that you are used to.  You will need to check out the `package.json` in the journey
 directory to see how to run cypress, **and** you are responsible for making
 sure the backend is running before starting up the cypress tests.
+- Please don't call the phone number in the photo, it's probably not legal
+for me to use this photo.
