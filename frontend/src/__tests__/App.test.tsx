@@ -12,7 +12,7 @@ it('should display names of pets', async () => {
 
   render(<App/>);
 
-  expect(await screen.findByText("Bumbum")).toBeVisible();
-  expect(await screen.findByText("Cuddles")).toBeVisible();
+  expect(await screen.findByText("Bumbum")).toBeInTheDocument();
+  expect(await screen.findByText("Cuddles")).toBeInTheDocument();
 });
 

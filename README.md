@@ -45,3 +45,10 @@ Stinky is tired and frustrated.  Multiple pets are being returned to the adoptio
 agency because they do not get along with their adopter's already-owned pets.  As 
 Stinky, I do not want to be able to grant approval for an adoption if the pet wants
 to be an only-pet and the applicant already has pets at home.
+
+
+## Things to Note
+- I have not provided you the same `yarn open` script in the journey test directory
+that you are used to.  You will need to check out the `package.json` in the journey
+directory to see how to run cypress, **and** you are responsible for making
+sure the backend is running before starting up the cypress tests.
