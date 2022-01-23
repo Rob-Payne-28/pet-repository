@@ -12,7 +12,7 @@ public class PetController {
     PetService petService;
 
     @GetMapping("api/pets")
-    public List<PetEntity> getPets() {
+    public List<PetResponse> getPets() {
         return petService.getAllPets();
     }
 

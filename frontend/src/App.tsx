@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Pet} from "./Pet";
 import {getPets} from "./petClient";
+import {Card, Typography} from "@material-ui/core";
 
 const App = () => {
     const [pets, setPets] = useState<Pet[]>([]);
@@ -11,10 +12,22 @@ const App = () => {
             }
         )
     }, [])
+
     return (
         <>
-            <h1> Stinky's Kittens and Doggies too! </h1>
-            {pets.map(pet => <div key={pet.id}> {pet.name} </div>)}
+            <Typography variant={"h5"}> Stinky's Kittens and Doggies too! </Typography>
+            {pets
+                .map((pet, index) =>
+                    <Card variant={"outlined"} key={index}>
+                        Name: {pet.name}
+                        <br/>
+                        Age: {pet.age}
+                        <br/>
+                        Type: {pet.type}
+                        <br/>
+                        Only Pet Preference: {pet.wantsToBeOnlyPet.toString()}
+                    </Card>)
+            }
         </>
     )
 }

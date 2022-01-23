@@ -22,13 +22,19 @@ class PetServiceTest {
     @Test
     public void shouldReturnAllPets() {
         var expectedPets = List.of(
-                new PetEntity(1L, "lisa"),
-                new PetEntity(2L, "larry"));
+                PetEntity.builder().age(1).name("Lisa").type("Cat").wantsToBeOnlyPet(false).build(),
+                PetEntity.builder().age(40).name("Larry").type("Dog").wantsToBeOnlyPet(true).build()
+        );
         when(petJpaRepository.findAll()).thenReturn(expectedPets);
 
         var returnedPets = petService.getAllPets();
 
-        assertThat(returnedPets).isEqualTo(expectedPets);
+        var expectedResponse = List.of(
+                PetResponse.builder().age(1).name("Lisa").type("Cat").wantsToBeOnlyPet(false).build(),
+                PetResponse.builder().age(40).name("Larry").type("Dog").wantsToBeOnlyPet(true).build()
+        );
+
+        assertThat(returnedPets).isEqualTo(expectedResponse);
     }
 
 }

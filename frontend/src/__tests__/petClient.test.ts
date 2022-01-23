@@ -1,5 +1,4 @@
 import axios from 'axios';
-import {Pet} from "../Pet";
 import {getPets} from "../petClient";
 
 jest.mock('axios');
@@ -9,7 +8,7 @@ describe('petClient', () => {
     describe('getPets', () => {
 
         it('should make a request for pets', async () => {
-            const expectedPets = {data: [{id: 1, name: 'fluffy'}, {id: 2, name: 'baldy'}]}
+            const expectedPets = {data: [{name: 'fluffy', age: 4, type: 'cat', wantsToBeOnlyPet: true}, {name: 'baldy', age: 10, type: 'dog', wantsToBeOnlyPet: false}]}
             mockedAxios.get.mockResolvedValue({data: expectedPets})
 
             const returnedPets = await getPets();

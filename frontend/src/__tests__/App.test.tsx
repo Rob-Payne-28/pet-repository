@@ -5,14 +5,17 @@ import App from "../App";
 
 jest.mock('../petClient');
 const mockGetPets = getPets as jest.MockedFunction<typeof getPets>;
+describe('Application', () => {
+    it('should display pet information', async () => {
+        const pets = [
+            {name: "Bumbum", age: 10, type: 'Cat', wantsToBeOnlyPet: false},
+            {name: "Cuddles", age: 8, type: 'Cat', wantsToBeOnlyPet: false}
+        ];
+        mockGetPets.mockResolvedValueOnce(pets);
 
-it('should display names of pets', async () => {
-  const pets = [{id: 1, name: "Bumbum"}, {id: 2, name: "Cuddles"}];
-  mockGetPets.mockResolvedValue(pets);
+        render(<App/>);
 
-  render(<App/>);
-
-  expect(await screen.findByText("Bumbum")).toBeInTheDocument();
-  expect(await screen.findByText("Cuddles")).toBeInTheDocument();
+        expect(await screen.findByText(/Bumbum/i)).toBeInTheDocument();
+        expect(screen.getByText(/Cuddles/i)).toBeInTheDocument();
+    });
 });
-
