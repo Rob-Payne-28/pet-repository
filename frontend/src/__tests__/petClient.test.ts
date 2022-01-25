@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {getPets} from "../petClient";
+import {getPets, createPets} from "../petClient";
 
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
@@ -15,6 +15,16 @@ describe('petClient', () => {
             expect(returnedPets).toEqual(expectedPets);
             expect(mockedAxios.get).toHaveBeenCalledWith('/api/pets')
         });
+    });
+
+    describe('createPets', () => {
+       it('should make a request to create a pet', async () => {
+           const newPetResponse = {name: 'Prancer', age: 10, type: 'Dog', wantsToBeOnlyPet: true};
+           mockedAxios.post.mockResolvedValueOnce({data: newPetResponse});
+
+           const returnedValue = await createPets(newPetResponse);
+           expect(returnedValue).toEqual(newPetResponse);
+       });
     });
 });
 

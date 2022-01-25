@@ -9,7 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class PetServiceTest {
@@ -37,4 +37,40 @@ class PetServiceTest {
         assertThat(returnedPets).isEqualTo(expectedResponse);
     }
 
+    @Test
+    public void shouldCreateAPet() {
+        var newPetEntity = PetEntity.builder()
+                .name("Lisa")
+                .age(1)
+                .type("Cat")
+                .wantsToBeOnlyPet(false)
+                .build();
+
+        var petEntity = PetEntity.builder()
+                .age(newPetEntity.getAge())
+                .name(newPetEntity.getName())
+                .type(newPetEntity.getType())
+                .wantsToBeOnlyPet(newPetEntity.isWantsToBeOnlyPet())
+                .build();
+
+        var newPetResponse = PetResponse.builder()
+                .name(newPetEntity.getName())
+                .age(newPetEntity.getAge())
+                .type(newPetEntity.getType())
+                .wantsToBeOnlyPet(newPetEntity.isWantsToBeOnlyPet())
+                .build();
+
+        var newPetRequest = PetRequest.builder()
+                .name(newPetEntity.getName())
+                .age(newPetEntity.getAge())
+                .type(newPetEntity.getType())
+                .wantsToBeOnlyPet(newPetEntity.isWantsToBeOnlyPet())
+                .build();
+
+        when(petJpaRepository.save(newPetEntity)).thenReturn(petEntity);
+
+        var returnedEntity = petService.createPet(newPetRequest);
+
+        assertThat(returnedEntity).isEqualTo(newPetResponse);
+    }
 }

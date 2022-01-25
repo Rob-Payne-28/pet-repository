@@ -26,4 +26,24 @@ public class PetService {
         }
         return listOfResponse;
     }
+
+    public PetResponse createPet(PetRequest petRequest) {
+        var returnedEntity = petJpaRepository.save(
+                PetEntity.builder()
+                .name(petRequest.getName())
+                .age(petRequest.getAge())
+                .type(petRequest.getType())
+                .wantsToBeOnlyPet(petRequest.isWantsToBeOnlyPet())
+                .build()
+        );
+
+        var newResponse = PetResponse.builder()
+                .name(returnedEntity.getName())
+                .age(returnedEntity.getAge())
+                .type(returnedEntity.getType())
+                .wantsToBeOnlyPet(returnedEntity.isWantsToBeOnlyPet())
+                .build();
+
+        return newResponse;
+    }
 }
