@@ -1,4 +1,4 @@
-# Stinky's Kittens and Doggies too
+# Pet Adoption Agency
 
 ![image info](./stinkys_storefront.png)
 
